@@ -1,0 +1,79 @@
+
+
+package proect.first_project;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Collections;
+
+public class First_project {
+    
+    
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> listaDeInteiros = new ArrayList<Integer>();
+        ArrayList<Integer> listaDeInteiros_original = new ArrayList<Integer>();
+        while(true){
+        System.out.print("Quantos numeros voce irá adicionar? ");
+        int t = scanner.nextInt();
+        for (int i = 0; i < t; i++) {
+            System.out.print("Digite um número inteiro: ");
+            int numero = scanner.nextInt();
+            listaDeInteiros.add(numero);
+            listaDeInteiros_original.add(numero);
+        }
+        
+        System.out.println("Agora, escolha como deseja ordenar sua lista: ");        
+        System.out.println("1=ORDENAR EM ORDEM CRESCENTE 2=ORDENAÇÃO DECRESCENTE 3=MAIOR ELEMENTO AO MEIO");
+        int opcao = scanner.nextInt();
+            if(opcao==1){
+                cresc(listaDeInteiros);
+                System.out.println("Lista antes da ordenação: ");
+                System.out.println(listaDeInteiros_original);
+                System.out.println("Lista depois da ordenação: ");
+                System.out.println(listaDeInteiros);
+        }
+            else if(opcao==2){
+                cresc(listaDeInteiros);
+                Collections.reverse(listaDeInteiros);  
+                System.out.println("Lista antes da ordenação: ");
+                System.out.println(listaDeInteiros_original);
+                System.out.println("Lista depois da ordenação: ");
+                System.out.println(listaDeInteiros);
+            }
+            else if (opcao == 3) {
+                int maxIndex = 0;
+                int max = listaDeInteiros.get(0);
+                int size = listaDeInteiros.size();
+                for (int i = 1; i < size; i++) {
+                    if (listaDeInteiros.get(i) > max) {
+                        max = listaDeInteiros.get(i);
+                        maxIndex = i;
+                    }
+                }
+                listaDeInteiros.remove(maxIndex);
+                int midIndex = size / 2;
+                listaDeInteiros.add(midIndex, max);
+                System.out.println("Lista antes da ordenação: ");
+                System.out.println(listaDeInteiros_original);
+                System.out.println("Lista depois da ordenação: ");
+                System.out.println(listaDeInteiros);
+            }
+            listaDeInteiros.clear();
+            listaDeInteiros_original.clear();
+            
+            System.out.println("Ler novos valores? 1=SIM 2=NAO");
+            String option = new Scanner(System.in).next();
+            switch(option){
+                case "2":
+                    System.exit(0);
+            }
+        }
+    }
+    
+    public static void cresc(ArrayList<Integer> lista) {
+        Collections.sort(lista);
+    }    
+}
+    
